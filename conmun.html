@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CONMUN Events | Peter Salameh</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: 3rem auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .slides {
+      display: none;
+      width: 100%;
+      height: 750px;
+      object-fit: cover;
+    }
+
+    .event-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 2rem;
+      color: #fff;
+    }
+
+    .event-description {
+      text-align: center;
+      max-width: 800px;
+      margin: 1rem auto;
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Cascadia Mono", sans-serif;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Peter Salameh</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="edu.html">Education</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="events.html">Director Role</a></li>
+          <li><a href="delegate.html">Delegate Experience</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="intro-section">
+    <h2 class="event-title">CONMUN Events</h2>
+    <p class="event-description">Here are some of the highlights from my involvement with CONMUN as Director of Events and Chair.</p>
+
+    <!-- Event 1 -->
+    <h2 class="event-title">Charity Fundraising Event</h2>
+    <div class="slideshow-container">
+      <img class="slides slideshow1" src="images/N1.png" />
+      <img class="slides slideshow1" src="images/N2.png" />
+      <img class="slides slideshow1" src="images/N3.png" />
+    </div>
+    <p class="event-description">Organized a fundraising event that raised nearly $4,000 and welcomed around 150 participants for an evening of philanthropy and purpose.</p>
+
+    <!-- Event 2 -->
+    <h2 class="event-title">CONMUN Networking Event</h2>
+    <div class="slideshow-container">
+      <img class="slides slideshow2" src="images/S1.jpg" />
+      <img class="slides slideshow2" src="images/S2.jpg" />
+      <img class="slides slideshow2" src="images/S3.jpg" />
+    </div>
+    <p class="event-description">Coordinated a high-level networking event where UN representatives like Senator Galvez and Senator McPherdham engaged with international students on global issues.</p>
+
+    <!-- Event 3 -->
+    <h2 class="event-title">CONMUN / its Social Events</h2>
+    <div class="slideshow-container">
+      <img class="slides slideshow3" src="images/n1.jpg" />
+      <img class="slides slideshow3" src="images/n2.jpg" />
+      <img class="slides slideshow3" src="images/n3.jpg" />
+    </div>
+    <p class="event-description">Designed a weekend of social activities for over 250 students from different countries to connect, collaborate, and form lasting friendships.</p>
+
+    <!-- Event 4 -->
+    <h2 class="event-title">Chairing Committee</h2>
+    <div class="slideshow-container">
+      <img class="slides slideshow4" src="images/c1.jpg" />
+      <img class="slides slideshow4" src="images/c3.jpeg" />
+      <img class="slides slideshow4" src="images/c2.jpg" />
+    </div>
+    <p class="event-description">Served as a chair on a historical committee—mentoring delegates, maintaining procedural flow, and fostering excellence in debate and diplomacy.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Peter Salameh. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function startSlideshow(className, delay = 2500) {
+      let index = 0;
+      const slides = document.getElementsByClassName(className);
+      slides[0].style.display = "block"; // Show first slide initially
+      setInterval(() => {
+        slides[index].style.display = "none";
+        index = (index + 1) % slides.length;
+        slides[index].style.display = "block";
+      }, delay);
+    }
+
+    startSlideshow("slideshow1");
+    startSlideshow("slideshow2");
+    startSlideshow("slideshow3");
+    startSlideshow("slideshow4");
+  </script>
+</body>
+</html>

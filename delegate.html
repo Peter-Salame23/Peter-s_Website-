@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delegate Experience | Peter Salameh</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .delegate-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 4rem 2rem;
+    }
+
+    .delegate-box {
+      width: 90vw;
+      height: 600px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      /* Animation */
+      opacity: 0;
+      transform: translateY(30px);
+      animation: popUp 0.8s ease forwards;
+    }
+
+    .delegate-box:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes popUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .delegate-box:hover {
+      transform: scale(1.03);
+    }
+
+    .delegate-box::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 16px;
+    }
+
+    .delegate-box h2 {
+      color: #c8a9a9;
+      z-index: 2;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Peter Salameh</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="edu.html">Education</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="events.html">Director Role</a></li>
+          <li><a href="delegate.html">Delegate Experience</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2 style="text-align: center; padding-top: 3rem;">The world of Model United Nations </h2>
+    <div class="delegate-container">
+      <a href="ced.html" class="delegate-box" style="background-image: url('./images/CED.jpeg');">
+        <h2>CED</h2>
+      </a>
+      <a href="conmun.html" class="delegate-box" style="background-image: url('./images/Conmun.jpg');">
+        <h2>CONMUN</h2>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Peter Salameh. All rights reserved.</p>
+  </footer>
+</body>
+</html>

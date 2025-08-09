@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peter Salameh | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Swirl background -->
+  <div class="content content--canvas"></div>
+
+  <!-- Welcome Screen -->
+  <section id="welcome">
+    <h1 class="animated-text">Welcome to my World ~ P.S </h1>
+  </section>
+
+  <!-- Main Site Content -->
+  <div id="main-content" class="hidden">
+    <header>
+      <div class="container">
+        <h1>Peter Salameh</h1>
+        <nav>
+          <ul>
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="edu.html">Education</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <!-- <li><a href="events.html">Director Role</a></li> -->
+            <li><a href="delegate.html">Delegate Experience</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="intro-section fade-in" id="intro">
+      <div class="intro-container">
+        <div class="intro-text">
+          <h2>Welcome!</h2>
+          <p>
+            I'm Peter Salameh — passionate about data, strategy, and creating smart digital experiences.
+            Welcome to my portfolio where I showcase my journey, projects, and what lies ahead!
+          </p>
+        </div>
+        <img src="./images/IntroPic.jpeg" alt="Peter Salameh" class="intro-img" />
+      </div>
+    </section>
+
+    <main>
+      <div class="stack-container">
+
+        <a class="on-click-cards" href="edu.html">
+          <section class="fade-in delay-1" id="education">
+            <h2>Education</h2>
+            <p>Details about your academic background.</p>
+          </section>
+        </a>
+
+        <a class="on-click-cards" href="projects.html">
+          <section class="fade-in delay-1" id="projects">
+            <h2>Projects</h2>
+            <p>Explore some of the key projects I've worked on.</p>
+          </section>
+        </a>
+
+        <!-- <a class="on-click-cards" href="events.html">
+          <section class="fade-in delay-2" id="director">
+            <h2>Director of Events Experience</h2>
+            <p>Leadership and planning highlights.</p>
+          </section>
+        </a> -->
+
+        <a class="on-click-cards" href="delegate.html">
+          <section class="fade-in delay-2" id="MUN Experience">
+            <h2>Model United Nations Experience</h2>
+            <p>Details about MUN, conferences, etc.</p>
+          </section>
+        </a>
+
+        <a class="on-click-cards" href="blog.html">
+          <section class="fade-in delay-1" id="blog">
+            <h2>Blog</h2>
+            <p>Thoughts, reflections, or articles go here.</p>
+          </section>
+        </a>
+
+        <a class="on-click-cards" href="resume.html">
+          <section class="fade-in delay-1" id="resume">
+            <h2>Resume</h2>
+            <p><span style="color: #fff; text-decoration: underline;">View my resume (PDF)</span></p>
+          </section>
+        </a>
+
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Peter Salameh. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Scripts: must be inside body at the bottom -->
+  <script src="./js/noise.min.js"></script>
+  <script src="./js/util.js"></script>
+  <script src="./js/swirl.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

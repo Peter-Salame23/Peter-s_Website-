@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CED Conferences | Peter Salameh</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1rem 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin: 0;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+    }
+
+    main {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+    }
+
+    .quote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #ccc;
+    font-size: 1.4rem;
+    margin: 1rem auto 3rem;
+    max-width: 800px;
+    }
+
+
+    .conference-box {
+      width: 80vw;
+      height: 900px;
+      margin: 3rem auto 1rem;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .conference-box.delay-1 {
+      animation-delay: 0.5s;
+    }
+
+    .conference-box.delay-2 {
+      animation-delay: 1.5s;
+    }
+
+    .conference-box.delay-3 {
+      animation-delay: 2.5s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .conference-title {
+      position: absolute;
+      bottom: 1rem;
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+      z-index: 2;
+    }
+
+    .conference-description {
+      max-width: 800px;
+      margin: 1rem auto 4rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ddd;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .description.delay-1 {
+      animation-delay: 1.2s;
+    }
+
+    .description.delay-2 {
+      animation-delay: 2.2s;
+    }
+
+    .description.delay-3 {
+      animation-delay: 3.2s;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .nav-btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .prev-btn {
+      left: 10px;
+    }
+
+    .next-btn {
+      right: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      background: #111;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Peter Salameh</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="edu.html">Education</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="events.html">Director Role</a></li>
+          <li><a href="delegate.html">Delegate Experience</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>CED Conferences </h2>
+    <blockquote class="quote">
+      While each photo may show an award, the greatest honors were never made of metal or glass ; they were the friendships formed, the knowledge gained, and the unforgettable moments that made every experience truly golden.
+    </blockquote>
+    
+
+    <!-- McMUN -->
+    <div class="conference-box delay-1" id="mcmun-box" style="background-image: url('images/mcmun1.jpeg');">
+      <div class="overlay"></div>
+      <button class="nav-btn prev-btn" onclick="changeSlide('mcmun', -1)">&#10094;</button>
+      <h3 class="conference-title">McMUN (Mcgill) - 2025</h3>
+      <button class="nav-btn next-btn" onclick="changeSlide('mcmun', 1)">&#10095;</button>
+    </div>
+    <p class="conference-description description delay-1">
+      Hosted by McGill University, McMUN was one of the most competitive MUNs I’ve attended. I honed my leadership skills, collaborated with passionate delegates, 
+      and focused on handling Gender inequality with inclusive and innovative approaches.
+    </p>
+
+    <!-- CIAC -->
+    <div class="conference-box delay-2" id="ciac-box" style="background-image: url('images/ciac1.jpeg');">
+      <div class="overlay"></div>
+      <button class="nav-btn prev-btn" onclick="changeSlide('ciac', -1)">&#10094;</button>
+      <h3 class="conference-title">CIAC (Cornell University) - 2024</h3>
+      <button class="nav-btn next-btn" onclick="changeSlide('ciac', 1)">&#10095;</button>
+    </div>
+    <p class="conference-description description delay-2">
+      Hosted at one of the world’s top universities, CIAC tackled urgent global issues such as climate change, deforestation, and the endangerment of bees, creating a high-stakes environment for impactful debate.
+    </p>
+
+    <!-- NYUMUN -->
+    <div class="conference-box delay-3" id="nyumun-box" style="background-image: url('images/nyumun1.jpeg');">
+      <div class="overlay"></div>
+      <button class="nav-btn prev-btn" onclick="changeSlide('nyumun', -1)">&#10094;</button>
+      <h3 class="conference-title">NYUMUN (New York University) - 2022</h3>
+      <button class="nav-btn next-btn" onclick="changeSlide('nyumun', 1)">&#10095;</button>
+    </div>
+    <p class="conference-description description delay-3">
+      NYUMUN transported us back in time through a Southeast Asian historical committee, where we explored impactful events in depth and engaged in dynamic debates on alternative implementations.
+    </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Peter Salameh. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const slides = {
+      nyumun: ['./images/nyumun1.jpeg', './images/nyumun2.jpeg', './images/nyumun3.jpeg'],
+      ciac: ['images/ciac1.jpeg', 'images/ciac2.jpeg', 'images/ciac3.jpeg'],
+      mcmun: ['images/mcmun1.jpeg', 'images/mcmun2.png', 'images/mcmun3.jpeg']
+    };
+
+    const indices = {
+      nyumun: 0,
+      ciac: 0,
+      mcmun: 0
+    };
+
+    function changeSlide(conference, direction) {
+      const len = slides[conference].length;
+      indices[conference] = (indices[conference] + direction + len) % len;
+      const box = document.getElementById(`${conference}-box`);
+      box.style.backgroundImage = `url('${slides[conference][indices[conference]]}')`;
+    }
+
+    // Auto slideshow every 3 seconds
+    setInterval(() => {
+      changeSlide('nyumun', 1);
+      changeSlide('ciac', 1);
+      changeSlide('mcmun', 1);
+    }, 3000);
+  </script>
+</body>
+</html>
