@@ -1,36 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects | Peter Salameh</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <div class="container">
-      <h1>Peter Salameh</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="edu.html">Education</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="events.html">Director Role</a></li>
-          <li><a href="delegate.html">Delegate Experience</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<style>
+  :root {
+    --bg: #000000;
+    --text: #eaeaea;
+    --muted: #b5b5b5;
+    --card-bg: #0d0d0f;
+    --card-border: #1e1e22;
+    --accent: #7aa2ff;
+  }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  #post-grad-projects {
+    padding: 3rem 0 4rem;
+  }
+  #post-grad-projects h2 {
+    margin: 0 0 .5rem 0;
+    font-size: 2rem;
+    letter-spacing: .2px;
+    text-align: center;
+  }
+  #post-grad-projects .section-blurb {
+    color: var(--muted);
+    max-width: 720px;
+    margin: 0.25rem auto 2.25rem auto;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .stack {
+    display: grid;
+    gap: 1.4rem;
+  }
+  .project-card {
+    background: radial-gradient(1200px 400px at 20% -20%, rgba(122,162,255,.08), transparent 60%),
+                radial-gradient(1200px 400px at 120% 120%, rgba(122,162,255,.06), transparent 60%),
+                var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0,0,0,.45);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.55);
+    border-color: #2a2a31;
+  }
+  .image-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #111;
+    overflow: hidden;
+  }
+  .image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.02);
+    transition: transform .5s ease;
+  }
+  .project-card:hover .image-wrap img { transform: scale(1.06); }
+  .project-content {
+    padding: 1.25rem 1.25rem 1.3rem;
+    display: grid;
+    gap: .55rem;
+  }
+  .project-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+  .project-desc {
+    margin: .15rem 0 .4rem;
+    color: var(--text);
+    opacity: .9;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem;
+    margin-top: .2rem;
+  }
+  .btn {
+    display: inline-block;
+    padding: .65rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #2a2a31;
+    text-decoration: none;
+    color: var(--text);
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    transition: border-color .18s ease, background .18s ease, transform .02s ease, box-shadow .18s ease;
+    font-size: .95rem;
+  }
+  .btn:hover {
+    border-color: #3a3a42;
+    background: linear-gradient(180deg, rgba(122,162,255,.06), rgba(122,162,255,.02));
+    box-shadow: inset 0 0 0 1px rgba(122,162,255,.15);
+  }
+  .btn:active { transform: translateY(1px); }
+  .badge {
+    font-size: .82rem;
+    padding: .35rem .55rem;
+    border-radius: 8px;
+    border: 1px dashed #2a2a31;
+    color: var(--muted);
+  }
+  @media (min-width: 720px) {
+    .project-content { padding: 1.35rem 1.5rem 1.5rem; }
+  }
+</style>
 
-  <main class="intro-section">
-    <h2>Projects</h2>
-    <p>Explore some of the key projects I've worked on.</p>
-  </main>
+<section id="post-grad-projects" class="container">
+  <h2>Post Grad Projects</h2>
+  <p class="section-blurb">
+    A selection of dashboards and apps built after graduation. Each card includes a cover image,
+    a concise description, and links to try them out or view the code. 
+  </p>
 
-  <footer>
-    <p>&copy; 2025 Peter Salameh. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+  <div class="stack">
+    <!-- Project 1 -->
+    <article class="project-card">
+      <div class="image-wrap">
+        <img src="./images/Translation.jpg" 
+        alt="Multi-Agent Contract Translator preview" loading="lazy">
+      </div>
+      <div class="project-content">
+        <h3 class="project-title">Multi-Agent Contract Translator</h3>
+        <p class="project-desc">
+          This project involved sophisticated multi-agent communication to produce accurately formatted translated documents. By implementing this approach, the company avoided the cost of outsourcing these services. The system incorporated nearly eight specialized agents, each with a distinct role, working collaboratively to deliver optimal results.
+          As this is internal code, it will not be shared for security reasons.
+        </p>
+        <div class="meta">
+          <span class="badge">Python • Semantic Kernel • AI Agents</span>
+          <!-- <a class="btn" href="https://github.com/your-username/multi-agent-contract-translator" target="_blank" rel="noopener">View on GitHub</a>
+          <a class="btn" href="https://your-deployment-link.com" target="_blank" rel="noopener">Live Demo</a> -->
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project-card">
+      <div class="image-wrap">
+        <img src="./images/MentalHealth.png" 
+        alt="Personal Mental Health Assistant preview" loading="lazy">
+      </div>
+      <div class="project-content">
+        <h3 class="project-title">Personal Mental Health Assistant</h3>
+        <p class="project-desc">
+          A privacy-first conversational agent designed for mental health support. It leverages a medical API to provide accurate, reliable information about medications, tracks wellness trends, and offers general, safe advice for managing stress and anxiety. The agent will never provide diagnoses, but can post suicide prevention hotline numbers and promptly refer users to professional help if a situation becomes critical. 
+        </p>
+        <div class="meta">
+          <span class="badge">Python • FastAPI • Safety</span>
+          <a class="btn" href="https://github.com/your-username/mental-health-agent" target="_blank" rel="noopener">View on GitHub</a>
+          <a class="btn" href="https://your-deployment-link.com" target="_blank" rel="noopener">Live Demo</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project-card">
+      <div class="image-wrap">
+        <img src="./images/Dr.House.jpg" alt="Dr. House rental chatbot preview" loading="lazy">
+      </div>
+      <div class="project-content">
+        <h3 class="project-title">Dr. House</h3>
+        <p class="project-desc">
+          Your ideal property rental chatbot. Gathers preferences through friendly conversation, recommends properties from live listings, and supports instant bookings.
+          Authentication is also fully functional making each user's experience personalized.
+        </p>
+        <div class="meta">
+          <span class="badge">Streamlit • LLM • Recommender</span>
+          <a class="btn" href="https://github.com/your-username/dr-house" target="_blank" rel="noopener">View on GitHub</a>
+          <a class="btn" href="https://your-deployment-link.com" target="_blank" rel="noopener">Live Demo</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 4 -->
+    <article class="project-card">
+      <div class="image-wrap">
+        <img src="./images/community.jpg" alt="commUNITY preview" loading="lazy">
+      </div>
+      <div class="project-content">
+        <h3 class="project-title">commUNITY (Coming Soon)</h3>
+        <p class="project-desc">
+          An AI-powered agent that connects you with a community of people who share your background, interests, or experiences. It allows you to choose from different groups, making it ideal for immigrants or tourists seeking meaningful connections and ensuring no one feels isolated.
+        </p>
+        <div class="meta">
+          <span class="badge">Social Platform • TBD</span>
+          <a class="btn" href="https://github.com/your-username/community" target="_blank" rel="noopener">View on GitHub</a>
+          <!-- No Live Demo yet -->
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
