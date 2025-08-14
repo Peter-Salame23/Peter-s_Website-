@@ -2,205 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>CED Conferences | Peter Salameh</title>
   <link rel="stylesheet" href="style.css" />
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: white;
+    :root {
+      --bg:#000000; --text:#eaeaea; --muted:#b5b5b5;
+      --card-bg:#0d0d0f; --card-border:#1e1e22; --accent:#7aa2ff;
+      --header-bg:rgba(18,18,18,0.9); --header-border:rgba(255,255,255,.08);
     }
+    html, body { background: var(--bg); color: var(--text); margin: 0; font-family: Arial, sans-serif; }
+    a { color: var(--text); text-decoration: none; }
 
-    header {
-      background-color: #333;
-      color: white;
-      padding: 1rem 0;
+    /* Header */
+    .site-header{ width:100%; background:var(--header-bg); border-bottom:1px solid var(--header-border); }
+    .site-header .wrap{
+      width:min(1200px,92vw); margin-inline:auto;
+      display:flex; align-items:center; justify-content:space-between; padding:10px 0; gap:12px;
     }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
+    .brand a{ font-weight:800; letter-spacing:.2px; }
+    .nav.horizontal{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:flex-end; }
+    .nav.horizontal a{
+      padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      background:transparent; white-space:nowrap; font-size:14px;
     }
+    .nav.horizontal a:hover{ background:rgba(255,255,255,.06); }
 
-    header h1 {
-      margin: 0;
-      font-family: 'Bebas Neue', sans-serif;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 0.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: white;
-    }
-
-    main {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-    }
-
+    /* Page-specific */
+    main { padding: 4rem 2rem; text-align: center; }
+    h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; }
     .quote {
-    font-family: Georgia, serif;
-    font-style: italic;
-    color: #ccc;
-    font-size: 1.4rem;
-    margin: 1rem auto 3rem;
-    max-width: 800px;
+      font-family: Georgia, serif; font-style: italic; color: #ccc;
+      font-size: 1.4rem; margin: 1rem auto 3rem; max-width: 800px;
     }
-
-
     .conference-box {
-      width: 80vw;
-      height: 900px;
-      margin: 3rem auto 1rem;
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
+      width: 80vw; height: 900px; margin: 3rem auto 1rem; position: relative;
+      border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+      background-size: cover; background-position: center; display: flex;
+      align-items: flex-end; justify-content: center; opacity: 0; animation: fadeInUp 1s ease forwards;
     }
-
-    .conference-box.delay-1 {
-      animation-delay: 0.5s;
-    }
-
-    .conference-box.delay-2 {
-      animation-delay: 1.5s;
-    }
-
-    .conference-box.delay-3 {
-      animation-delay: 2.5s;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    .conference-box.delay-1 { animation-delay: 0.5s; }
+    .conference-box.delay-2 { animation-delay: 1.5s; }
+    .conference-box.delay-3 { animation-delay: 2.5s; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(40px);} to { opacity:1; transform:translateY(0);} }
     .conference-title {
-      position: absolute;
-      bottom: 1rem;
-      color: #fff;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
-      z-index: 2;
+      position: absolute; bottom: 1rem; color:#fff; font-family:'Bebas Neue', sans-serif;
+      font-size: 2.5rem; text-shadow: 1px 1px 6px rgba(0,0,0,.8); z-index: 2;
     }
-
     .conference-description {
-      max-width: 800px;
-      margin: 1rem auto 4rem;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #ddd;
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
+      max-width: 800px; margin: 1rem auto 4rem; font-size: 1.1rem; line-height: 1.6; color: #ddd;
+      opacity: 0; animation: fadeInUp 1s ease forwards;
     }
-
-    .description.delay-1 {
-      animation-delay: 1.2s;
-    }
-
-    .description.delay-2 {
-      animation-delay: 2.2s;
-    }
-
-    .description.delay-3 {
-      animation-delay: 3.2s;
-    }
-
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
-
+    .description.delay-1 { animation-delay: 1.2s; }
+    .description.delay-2 { animation-delay: 2.2s; }
+    .description.delay-3 { animation-delay: 3.2s; }
+    .overlay { position:absolute; inset:0; background:rgba(0,0,0,0.4); z-index:1; }
     .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-      background: rgba(0, 0, 0, 0.4);
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 3;
+      position:absolute; top:50%; transform:translateY(-50%); color:white; font-size:2rem; font-weight:bold;
+      background:rgba(0,0,0,0.4); border:none; padding:.5rem 1rem; cursor:pointer; z-index:3;
     }
+    .nav-btn:hover { background: rgba(0,0,0,0.7); }
+    .prev-btn { left:10px; } .next-btn { right:10px; }
 
-    .nav-btn:hover {
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .prev-btn {
-      left: 10px;
-    }
-
-    .next-btn {
-      right: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      background: #111;
-      color: #aaa;
-    }
+    footer { text-align:center; padding:2rem 0; background:#111; color:#aaa; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Peter Salameh</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="edu.html">Education</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="events.html">Director Role</a></li>
-          <!-- <li><a href="delegate.html">Delegate Experience</a></li> -->
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
+  <!-- Horizontal nav -->
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Peter Salameh</a></div>
+      <nav class="nav horizontal">
+        <a href="index.html">Home</a>
+        <a href="edu.html">Education</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <h2>CED Conferences </h2>
+    <h2>CED Conferences</h2>
     <blockquote class="quote">
       While each photo may show an award, the greatest honors were never made of metal or glass ; they were the friendships formed, the knowledge gained, and the unforgettable moments that made every experience truly golden.
     </blockquote>
-    
 
     <!-- McMUN -->
     <div class="conference-box delay-1" id="mcmun-box" style="background-image: url('images/mcmun1.jpeg');">
@@ -248,11 +136,7 @@
       mcmun: ['images/mcmun1.jpeg', 'images/mcmun2.png', 'images/mcmun3.jpeg']
     };
 
-    const indices = {
-      nyumun: 0,
-      ciac: 0,
-      mcmun: 0
-    };
+    const indices = { nyumun: 0, ciac: 0, mcmun: 0 };
 
     function changeSlide(conference, direction) {
       const len = slides[conference].length;

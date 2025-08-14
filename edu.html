@@ -2,77 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Education | Peter Salameh</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .edu-container {
-      padding: 2rem 4rem;
-      max-width: 1000px;
-      margin: 0 auto;
+    :root {
+      --bg:#000000; --text:#eaeaea; --muted:#b5b5b5;
+      --header-bg:rgba(18,18,18,0.9); --header-border:rgba(255,255,255,.08);
     }
+    html, body { background: var(--bg); color: var(--text); margin: 0; font-family: Arial, sans-serif; }
+    a { color: var(--text); text-decoration: none; }
 
+    /* Header */
+    .site-header { width:100%; background:var(--header-bg); border-bottom:1px solid var(--header-border); }
+    .site-header .wrap {
+      width:min(1200px,92vw); margin-inline:auto; display:flex; align-items:center; justify-content:space-between; padding:10px 0; gap:12px;
+    }
+    .brand a { font-weight:800; letter-spacing:.2px; }
+    .nav.horizontal { display:flex; gap:.6rem; flex-wrap:wrap; justify-content:flex-end; }
+    .nav.horizontal a {
+      padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      background:transparent; white-space:nowrap; font-size:14px;
+    }
+    .nav.horizontal a:hover { background:rgba(255,255,255,.06); }
+
+    /* Page-specific */
+    .edu-container { padding: 2rem 4rem; max-width: 1000px; margin: 0 auto; }
     .edu-section {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease forwards;
+      display:flex; flex-direction:row; align-items:center; gap:2rem; margin-bottom:3rem;
+      opacity:0; transform:translateY(30px); animation:fadeInUp 0.8s ease forwards;
     }
+    .edu-section:nth-of-type(1){animation-delay:0.1s;}
+    .edu-section:nth-of-type(2){animation-delay:0.6s;}
+    .edu-section:nth-of-type(3){animation-delay:1s;}
+    .edu-section:nth-of-type(4){animation-delay:1.5s;}
+    @keyframes fadeInUp { to{ opacity:1; transform:translateY(0);} }
+    .edu-section img { width:200px; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+    .edu-section-content { max-width:700px; }
+    .edu-section h2 { margin-bottom:0.5rem; font-family:'Bebas Neue', sans-serif; }
+    @media (max-width:768px){ .edu-section{flex-direction:column; text-align:center;} }
 
-    .edu-section:nth-of-type(1) { animation-delay: 0.1s; }
-    .edu-section:nth-of-type(2) { animation-delay: 0.6s; }
-    .edu-section:nth-of-type(3) { animation-delay: 1s; }
-    .edu-section:nth-of-type(4) { animation-delay: 1.5s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .edu-section img {
-      width: 200px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .edu-section-content {
-      max-width: 700px;
-    }
-
-    .edu-section h2 {
-      margin-bottom: 0.5rem;
-      font-family: 'Bebas Neue', sans-serif;
-    }
-
-    @media (max-width: 768px) {
-      .edu-section {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
+    footer { text-align:center; padding:2rem 0; background:#111; color:#aaa; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Peter Salameh</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="edu.html">Education</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <!-- <li><a href="events.html">Director Role</a></li> -->
-          <li><a href="delegate.html">Delegate Experience</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Peter Salameh</a></div>
+      <nav class="nav horizontal">
+        <a href="index.html">Home</a>
+        <a href="edu.html">Education</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
       </nav>
     </div>
   </header>
@@ -84,31 +67,30 @@
       <img src="./images/highschool.jpeg" alt="High School- CNDL">
       <div class="edu-section-content">
         <h2>High School - CNDL </h2>
-        <p> I graduated from Collège Notre-Dame de Louaize (CNDL) with a General Science degree, where my interest in both Mathematics and Social Sciences first began to take shape.
-        </p>
+        <p>I graduated from Collège Notre-Dame de Louaize (CNDL) with a General Science degree, where my interest in both Mathematics and Social Sciences first began to take shape.</p>
       </div>
     </section>
 
     <section class="edu-section">
       <img src="./images/college.jpeg" alt="College (CEGEP) - Vanier College">
       <div class="edu-section-content">
-        <h2>College - Vanier College </h2>
+        <h2>College - Vanier College</h2>
         <p>At Vanier College, I engaged in interdisciplinary studies across Mathematics and Social Sciences, building connections between the two fields and fostering balanced growth in both areas.</p>
       </div>
     </section>
 
     <section class="edu-section">
-      <img src="./images/undergrad.jpg" alt="Undergraduate Studies - Concordia Univeristy ">
+      <img src="./images/undergrad.jpg" alt="Undergraduate Studies - Concordia University">
       <div class="edu-section-content">
-        <h2>Undergraduate Degree - Concordia University </h2>
-        <p>Icompleted my undergraduate studies in Data Science, where I explored and specialized in the field of Artificial Intelligence.</p>
+        <h2>Undergraduate Degree - Concordia University</h2>
+        <p>I completed my undergraduate studies in Data Science, where I explored and specialized in the field of Artificial Intelligence.</p>
       </div>
     </section>
 
     <section class="edu-section">
       <img src="./images/masteres.jpg" alt="Master's Degree in Management Analytics - University of Toronto">
       <div class="edu-section-content">
-        <h2>Master's Degree _ University of Toronto</h2>
+        <h2>Master's Degree - University of Toronto</h2>
         <p>I will be pursuing a Master of Management Analytics (MMA) at the University of Toronto, with an expected graduation in July 2026.</p>
       </div>
     </section>

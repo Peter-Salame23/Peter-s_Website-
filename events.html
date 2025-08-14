@@ -6,97 +6,89 @@
   <title>Director Role | Peter Salameh</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    :root {
+      --bg:#000000; --text:#eaeaea; --muted:#b5b5b5;
+      --header-bg:rgba(18,18,18,0.9); --header-border:rgba(255,255,255,.08);
+    }
+    html, body { background: var(--bg); color: var(--text); margin: 0; font-family: Arial, sans-serif; }
+    a { color: var(--text); text-decoration: none; }
+
+    /* Header */
+    .site-header { width:100%; background:var(--header-bg); border-bottom:1px solid var(--header-border); }
+    .site-header .wrap {
+      width:min(1200px,92vw); margin-inline:auto; display:flex; align-items:center; justify-content:space-between; padding:10px 0; gap:12px;
+    }
+    .brand a { font-weight:800; letter-spacing:.2px; }
+    .nav.horizontal { display:flex; gap:.6rem; flex-wrap:wrap; justify-content:flex-end; }
+    .nav.horizontal a {
+      padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      background:transparent; white-space:nowrap; font-size:14px;
+    }
+    .nav.horizontal a:hover { background:rgba(255,255,255,.06); }
+
+    /* Page-specific */
     .slideshow-container {
-      position: relative;
-      max-width: 900px;
-      margin: 2rem auto;
-      border-radius: 16px;
-      overflow: hidden;
+      position: relative; max-width: 900px; margin: 2rem auto;
+      border-radius: 16px; overflow: hidden;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
-    .slides {
-      display: none;
-      width: 100%;
-      height: clamp(220px, 50vw, 500px);
-      object-fit: cover;
-    }
-    .event-title {
-      text-align: center;
-      font-size: clamp(1.4rem, 4.5vw, 2rem);
-      margin-top: 1.5rem;
-      color: #fff;
-      padding: 0 1rem;
-    }
-    .event-description {
-      text-align: center;
-      max-width: 900px;
-      margin: .75rem auto 1.25rem;
-      color: #ccc;
-      font-size: clamp(.95rem, 2.7vw, 1.1rem);
-      padding: 0 1rem;
-      line-height: 1.7;
-    }
-    body { background-color: #000; color: #fff; font-family: "Cascadia Mono", sans-serif; }
-    header, footer { text-align: center; padding: 1rem; }
-    nav ul {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; list-style: none; padding: 0;
-    }
-    nav a { text-decoration: none; color: #fff; }
+    .slides { display:none; width:100%; height:clamp(220px, 50vw, 500px); object-fit:cover; }
+    .event-title { text-align:center; font-size:clamp(1.4rem, 4.5vw, 2rem); margin-top:1.5rem; color:#fff; padding:0 1rem; }
+    .event-description { text-align:center; max-width:900px; margin:.75rem auto 1.25rem; color:#ccc; font-size:clamp(.95rem, 2.7vw, 1.1rem); padding:0 1rem; line-height:1.7; }
+
+    footer { text-align:center; padding:2rem 0; background:#111; color:#aaa; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Peter Salameh</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="edu.html">Education</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="events.html">Director Role</a></li>
-          <!-- <li><a href="delegate.html">Delegate Experience</a></li> -->
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Peter Salameh</a></div>
+      <nav class="nav horizontal">
+        <a href="index.html">Home</a>
+        <a href="edu.html">Education</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
       </nav>
     </div>
   </header>
 
-  <main class="intro-section" style="padding: 1.25rem;">
+  <main style="padding: 1.25rem;">
     <h2 class="event-title">Director of Events Experience</h2>
     <p class="event-description">Leadership and planning highlights from major events I organized or led.</p>
 
     <h2 class="event-title">Charity Fundraising Event</h2>
-    <div class="slideshow-container" id="slideshow1">
+    <div class="slideshow-container">
       <img class="slides slideshow1" src="images/summit1.jpg" />
       <img class="slides slideshow1" src="images/summit2.jpg" />
       <img class="slides slideshow1" src="images/summit3.jpg" />
     </div>
-    <p class="event-description">Organized a Fundraising event that made almost 4 thousand dollars and had around 150 participants</p>
+    <p class="event-description">Organized a fundraising event that made almost $4,000 and had around 150 participants.</p>
 
     <h2 class="event-title">Conmun Networking Event</h2>
-    <div class="slideshow-container" id="slideshow2">
+    <div class="slideshow-container">
       <img class="slides slideshow2" src="images/fair1.jpg" />
       <img class="slides slideshow2" src="images/fair2.jpg" />
       <img class="slides slideshow2" src="images/fair3.jpg" />
     </div>
-    <p class="event-description">Coordinated an Event where UN representitives Senator Galvez and Senator McPherdham met and discussed Global issues from students from all around the world</p>
+    <p class="event-description">Coordinated an event where UN representatives Senator Galvez and Senator McPherdham met with students from all over the world to discuss global issues.</p>
 
     <h2 class="event-title">Conmun Social Events</h2>
-    <div class="slideshow-container" id="slideshow3">
+    <div class="slideshow-container">
       <img class="slides slideshow3" src="images/network1.jpg" />
       <img class="slides slideshow3" src="images/network2.jpg" />
       <img class="slides slideshow3" src="images/network3.jpg" />
     </div>
-    <p class="event-description">Curated a weekend full of social events for close to 250 students coming from different countries to socialize, connect, and each others companies</p>
+    <p class="event-description">Curated a weekend full of social events for nearly 250 international students to connect and socialize.</p>
 
     <h2 class="event-title">Chairing Committee</h2>
-    <div class="slideshow-container" id="slideshow4">
+    <div class="slideshow-container">
       <img class="slides slideshow4" src="images/culture1.jpg" />
       <img class="slides slideshow4" src="images/culture2.jpg" />
       <img class="slides slideshow4" src="images/culture3.jpg" />
     </div>
-    <p class="event-description">Served as a chair to a historical committee evaluating, mentoring, and guiding delegates to compete at the highest level and</p>
+    <p class="event-description">Served as chair for a historical committee, mentoring delegates and maintaining procedural flow for high-level debate.</p>
   </main>
 
   <footer>

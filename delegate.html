@@ -2,10 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Delegate Experience | Peter Salameh</title>
   <link rel="stylesheet" href="style.css" />
+
   <style>
+    :root {
+      --bg:#000000; --text:#eaeaea; --muted:#b5b5b5;
+      --card-bg:#0d0d0f; --card-border:#1e1e22; --accent:#7aa2ff;
+      --header-bg:rgba(18,18,18,0.9); --header-border:rgba(255,255,255,.08);
+    }
+    html, body { background: var(--bg); color: var(--text); margin: 0; font-family: Arial, sans-serif; }
+    a { color: var(--text); text-decoration: none; }
+
+    /* ===== Header (ALWAYS HORIZONTAL) ===== */
+    .site-header{
+      width:100%;
+      background:var(--header-bg);
+      border-bottom:1px solid var(--header-border);
+    }
+    .site-header .wrap{
+      width:min(1200px,92vw);
+      margin-inline:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 0;
+      gap:12px;
+    }
+    .brand a{ font-weight:800; letter-spacing:.2px; }
+
+    .nav.horizontal{
+      display:flex;
+      gap:.6rem;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav.horizontal a{
+      padding:8px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.08);
+      background:transparent;
+      white-space:nowrap;
+      font-size:14px;
+    }
+    .nav.horizontal a:hover{
+      background:rgba(255,255,255,.06);
+    }
+
+    /* ===== Page-specific styles ===== */
     .delegate-container {
       display: flex;
       justify-content: center;
@@ -14,7 +59,6 @@
       flex-wrap: wrap;
       padding: 4rem 2rem;
     }
-
     .delegate-box {
       width: 90vw;
       height: 600px;
@@ -30,35 +74,19 @@
       position: relative;
       overflow: hidden;
 
-      /* Animation */
       opacity: 0;
       transform: translateY(30px);
       animation: popUp 0.8s ease forwards;
     }
-
-    .delegate-box:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    @keyframes popUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .delegate-box:hover {
-      transform: scale(1.03);
-    }
-
+    .delegate-box:nth-child(2) { animation-delay: 0.2s; }
+    @keyframes popUp { to { opacity:1; transform:translateY(0);} }
+    .delegate-box:hover { transform: scale(1.03); }
     .delegate-box::after {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: rgba(0, 0, 0, 0.4);
       border-radius: 16px;
     }
-
     .delegate-box h2 {
       color: #c8a9a9;
       z-index: 2;
@@ -66,28 +94,28 @@
       font-size: 3.5rem;
       text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
     }
+
+    footer { text-align:center; padding:2rem 0; background:#111; color:#aaa; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Peter Salameh</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="edu.html">Education</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <!-- <li><a href="events.html">Director Role</a></li> -->
-          <li><a href="delegate.html">Delegate Experience</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
+  <!-- Horizontal nav -->
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Peter Salameh</a></div>
+      <nav class="nav horizontal">
+        <a href="index.html">Home</a>
+        <a href="edu.html">Education</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <h2 style="text-align: center; padding-top: 3rem;">The world of Model United Nations </h2>
+    <h2 style="text-align: center; padding-top: 3rem;">The world of Model United Nations</h2>
     <div class="delegate-container">
       <a href="ced.html" class="delegate-box" style="background-image: url('./images/CED.jpeg');">
         <h2>CED</h2>

@@ -5,7 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>CONMUN Events | Peter Salameh</title>
   <link rel="stylesheet" href="style.css" />
+
   <style>
+    :root {
+      --bg:#000000; --text:#eaeaea; --muted:#b5b5b5;
+      --card-bg:#0d0d0f; --card-border:#1e1e22; --accent:#7aa2ff;
+      --header-bg:rgba(18,18,18,0.9); --header-border:rgba(255,255,255,.08);
+    }
+    html, body { background: var(--bg); color: var(--text); margin: 0; font-family: Arial, sans-serif; }
+    a { color: var(--text); text-decoration: none; }
+
+    /* Header */
+    .site-header{ width:100%; background:var(--header-bg); border-bottom:1px solid var(--header-border); }
+    .site-header .wrap{
+      width:min(1200px,92vw); margin-inline:auto;
+      display:flex; align-items:center; justify-content:space-between; padding:10px 0; gap:12px;
+    }
+    .brand a{ font-weight:800; letter-spacing:.2px; }
+    .nav.horizontal{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:flex-end; }
+    .nav.horizontal a{
+      padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      background:transparent; white-space:nowrap; font-size:14px;
+    }
+    .nav.horizontal a:hover{ background:rgba(255,255,255,.06); }
+
+    /* Page-specific */
     .slideshow-container {
       position: relative;
       max-width: 900px;
@@ -36,40 +60,22 @@
       padding: 0 1rem;
       line-height: 1.7;
     }
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: "Cascadia Mono", sans-serif;
-    }
-    header, footer {
-      text-align: center;
-      padding: 1rem;
-    }
-    nav ul {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: .75rem;
-      list-style: none;
-      padding: 0;
-    }
-    nav a { text-decoration: none; color: #fff; }
+
+    footer { text-align:center; padding:2rem 0; background:#111; color:#aaa; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Peter Salameh</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="edu.html">Education</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="events.html">Director Role</a></li>
-          <!-- <li><a href="delegate.html">Delegate Experience</a></li> -->
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
+  <!-- Horizontal nav -->
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Peter Salameh</a></div>
+      <nav class="nav horizontal">
+        <a href="index.html">Home</a>
+        <a href="edu.html">Education</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
       </nav>
     </div>
   </header>
