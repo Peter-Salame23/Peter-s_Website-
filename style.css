@@ -305,22 +305,29 @@ footer {
   background-repeat: no-repeat;
 }
 
-/* Zoom-out effect but keep full coverage */
-.conference-box#mcmun-box,
+/* Same size + zoomed-out for all four conference boxes */
 .conference-box#ciac-box,
+.conference-box#mcmun-box,
 .conference-box#cornell-box,
 .conference-box#nyu-box {
-  background-size: cover; /* ensures full frame is filled */
-  transform: scale(1.05); /* slight zoom-out */
-  transform-origin: center center;
+  /* Box dimensions (adjust height as needed for your layout) */
+  min-height: 380px; 
+  width: 100%;
+
+  /* Zoom-out effect */
+  background-size: 90% !important; /* smaller % = more zoomed out */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #000; /* fills gaps if any */
 }
 
-/* Optional: adjust scale on smaller screens */
+/* Responsive: keep same size but adjust zoom on smaller screens */
 @media (max-width: 768px) {
-  .conference-box#mcmun-box,
   .conference-box#ciac-box,
+  .conference-box#mcmun-box,
   .conference-box#cornell-box,
   .conference-box#nyu-box {
-    transform: scale(1.02);
+    min-height: 300px;
+    background-size: 85% !important;
   }
 }
