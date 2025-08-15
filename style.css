@@ -305,42 +305,22 @@ footer {
   background-repeat: no-repeat;
 }
 
-/* Zoom-out ONLY these three tiles */
+/* Zoom-out effect but keep full coverage */
 .conference-box#mcmun-box,
 .conference-box#ciac-box,
-.conference-box#cornell-box {
-  /* < 100% = zooms out (shows more of the image) */
-  background-size: 90% !important;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-color: #000; /* fills any gaps if they appear */
+.conference-box#cornell-box,
+.conference-box#nyu-box {
+  background-size: cover; /* ensures full frame is filled */
+  transform: scale(1.05); /* slight zoom-out */
+  transform-origin: center center;
 }
 
-/* Slightly more zoom-out on phones */
+/* Optional: adjust scale on smaller screens */
 @media (max-width: 768px) {
   .conference-box#mcmun-box,
   .conference-box#ciac-box,
-  .conference-box#cornell-box {
-    background-size: 80% !important;
-  }
-}
-
-
-/* Zoom-out for NYU image only */
-.conference-box#nyu-box {
-  /* Percent <100% zooms out slightly—90% offers a gentle pull-back */
-  background-size: 90% !important;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-color: #000; /* Fallback to fill any border/gap if present */
-}
-
-/* On smaller screens, zoom out a bit more for better fit */
-@media (max-width: 768px) {
+  .conference-box#cornell-box,
   .conference-box#nyu-box {
-    background-size: 80% !important;
+    transform: scale(1.02);
   }
 }
-
-
-
