@@ -326,6 +326,21 @@ footer {
 }
 
 
+/* Zoom-out for NYU image only */
+.conference-box#nyu-box {
+  /* Percent <100% zooms out slightly—90% offers a gentle pull-back */
+  background-size: 90% !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #000; /* Fallback to fill any border/gap if present */
+}
+
+/* On smaller screens, zoom out a bit more for better fit */
+@media (max-width: 768px) {
+  .conference-box#nyu-box {
+    background-size: 80% !important;
+  }
+}
 
 
 
