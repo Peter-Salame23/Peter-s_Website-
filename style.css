@@ -305,29 +305,42 @@ footer {
   background-repeat: no-repeat;
 }
 
-/* Same size + zoomed-out for all four conference boxes */
+/* Same size + zoomed-out for CIAC, MCMUN, Cornell, NYU (nyumun-box) */
 .conference-box#ciac-box,
 .conference-box#mcmun-box,
 .conference-box#cornell-box,
-.conference-box#nyu-box {
-  /* Box dimensions (adjust height as needed for your layout) */
-  min-height: 380px; 
+.conference-box#nyumun-box {
+  /* Bigger uniform box */
+  min-height: 460px;
   width: 100%;
 
-  /* Zoom-out effect */
-  background-size: 90% !important; /* smaller % = more zoomed out */
+  /* Zoomed out (shows more of the image) */
+  background-size: 90% !important;
   background-position: center center;
   background-repeat: no-repeat;
-  background-color: #000; /* fills gaps if any */
+  background-color: #000; /* fills any gaps */
 }
 
-/* Responsive: keep same size but adjust zoom on smaller screens */
+/* Tablet */
+@media (max-width: 1024px) {
+  .conference-box#ciac-box,
+  .conference-box#mcmun-box,
+  .conference-box#cornell-box,
+  .conference-box#nyumun-box {
+    min-height: 420px;
+    background-size: 88% !important;
+  }
+}
+
+/* Phones */
 @media (max-width: 768px) {
   .conference-box#ciac-box,
   .conference-box#mcmun-box,
   .conference-box#cornell-box,
-  .conference-box#nyu-box {
-    min-height: 300px;
+  .conference-box#nyumun-box {
+    min-height: 340px;
     background-size: 85% !important;
   }
 }
+
+
