@@ -305,3 +305,27 @@ footer {
   background-repeat: no-repeat;
 }
 
+/* Zoom-out ONLY these three tiles */
+.conference-box#mcmun-box,
+.conference-box#ciac-box,
+.conference-box#cornell-box {
+  /* < 100% = zooms out (shows more of the image) */
+  background-size: 90% !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #000; /* fills any gaps if they appear */
+}
+
+/* Slightly more zoom-out on phones */
+@media (max-width: 768px) {
+  .conference-box#mcmun-box,
+  .conference-box#ciac-box,
+  .conference-box#cornell-box {
+    background-size: 80% !important;
+  }
+}
+
+
+
+
+
