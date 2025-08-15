@@ -298,3 +298,10 @@ footer {
   .stack-container { padding: 1.25rem .75rem; }
   .stack-container section { min-height: 200px; }
 }
+
+#mcmun-box {
+  background-size: 120%; /* smaller % zooms out more, e.g., 100% = original fit */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
