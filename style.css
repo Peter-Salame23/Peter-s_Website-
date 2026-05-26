@@ -384,13 +384,13 @@ footer {
     padding: 2rem 1rem;
     gap: 1.25rem;
   }
-  .stack-container section { min-height: 65vw; height: auto; aspect-ratio: unset; }
+  .stack-container section { min-height: 90vw; height: auto; aspect-ratio: unset; }
   .card-content { padding: 1.1rem .9rem; }
 
   /* Reset portrait/spanning cards to normal on mobile */
   .on-click-cards:has(#education),
   .on-click-cards:has(#projects) { grid-row: span 1; }
-  #education, #projects { aspect-ratio: unset !important; height: auto !important; min-height: 65vw; }
+  #education, #projects { aspect-ratio: unset !important; height: auto !important; min-height: 90vw; }
   #education .card-img, #projects .card-img { background-size: cover !important; }
 }
 
@@ -399,7 +399,7 @@ footer {
   nav li { font-size: 14px; }
   .intro-section { padding: 1rem; }
   .stack-container { padding: 1.25rem .75rem; }
-  .stack-container section { min-height: 60vw; }
+  .stack-container section { min-height: 85vw; }
   .card-content { padding: 1rem .75rem; }
   .card-content h2 { font-size: 1.15rem; }
 }
