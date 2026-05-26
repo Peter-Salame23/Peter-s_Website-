@@ -182,6 +182,15 @@ nav a:focus-visible { color: #00ffe1; outline: none; }
   max-width: 38ch;
 }
 
+.intro-verse {
+  margin-top: 1.1rem;
+  font-size: 0.82rem;
+  color: #666;
+  font-style: italic;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
 /* Scroll indicator */
 .scroll-hint {
   position: absolute;
