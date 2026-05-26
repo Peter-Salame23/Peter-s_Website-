@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>My Library | Peter Salameh</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --bg:#000000; --text:#eaeaea; --muted:#b5b5b5;
+      --card-bg:#0d0d0f; --card-border:#1e1e22; --accent:#7aa2ff;
+      --header-bg:rgba(18,18,18,0.9); --header-border:rgba(255,255,255,.08);
+    }
+    html, body { background: var(--bg); color: var(--text); margin: 0; font-family: "Cascadia Mono", monospace; }
+    a { color: var(--text); text-decoration: none; }
+
+    /* ── Header ── */
+    .site-header { width:100%; background:var(--header-bg); border-bottom:1px solid var(--header-border); backdrop-filter:blur(10px); position:sticky; top:0; z-index:100; }
+    .site-header .wrap { width:min(1200px,92vw); margin-inline:auto; display:flex; align-items:center; justify-content:space-between; padding:10px 0; gap:12px; }
+    .brand a { font-weight:800; letter-spacing:.2px; }
+    .nav { display:flex; gap:.6rem; flex-wrap:wrap; justify-content:flex-end; }
+    .nav a { padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08); font-size:14px; transition:background .2s; }
+    .nav a:hover { background:rgba(255,255,255,.06); }
+
+    /* ── Page ── */
+    .narrow { max-width: 1060px; margin: 0 auto; padding: 0 1rem; }
+    #library { padding: 2.5rem 0 4rem; }
+    #library h2 { margin:0 0 .4rem; font-size:clamp(1.6rem,5vw,2rem); text-align:center; }
+    .road-to-100 {
+      text-align: center; font-size: .78rem; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #7aa2ff; margin: 0 0 .5rem;
+      opacity: .7;
+    }
+    .section-blurb { color:var(--muted); text-align:center; font-size:.9rem; margin:0 0 2rem; line-height:1.6; }
+
+    /* ── Filter tabs ── */
+    .filters { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-bottom:2rem; }
+    .filter-btn {
+      padding:.5rem 1.1rem; border-radius:10px; border:1px solid #2a2a31;
+      background:transparent; color:var(--muted); font-family:"Cascadia Mono",monospace;
+      font-size:.82rem; cursor:pointer; transition:all .18s ease;
+    }
+    .filter-btn:hover { border-color:#444; color:#ddd; }
+    .filter-btn.active {
+      background:linear-gradient(180deg,rgba(122,162,255,.1),rgba(122,162,255,.04));
+      border-color:rgba(122,162,255,.5); color:#a0bfff;
+    }
+    .filter-btn[data-cat="reading"].active {
+      background:linear-gradient(180deg,rgba(255,180,80,.1),rgba(255,180,80,.04));
+      border-color:rgba(255,180,80,.5); color:#ffc060;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      grid-column:1/-1; font-size:.72rem; letter-spacing:3px;
+      text-transform:uppercase; color:var(--muted);
+      padding:.5rem 0 .4rem; border-bottom:1px solid #1a1a22; margin-bottom:.25rem;
+    }
+    .section-label[data-section="reading"] { color:#ffa040; border-bottom-color:#2a1e08; }
+    .section-label.hidden { display:none; }
+
+    /* ── Book grid ── */
+    .book-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:1.1rem; }
+
+    /* ── Book card ── */
+    .book-card {
+      background:var(--card-bg); border:1px solid var(--card-border);
+      border-radius:12px; overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      opacity:0; animation:fadeInUp .5s ease forwards;
+    }
+    .book-card:hover { transform:translateY(-4px); box-shadow:0 14px 32px rgba(0,0,0,.6); border-color:#2a2a35; }
+    .book-card[data-cat="reading"] { border-color:#2a1e08; }
+    .book-card[data-cat="reading"]:hover { border-color:#4a3010; box-shadow:0 14px 32px rgba(0,0,0,.6),0 0 0 1px rgba(255,160,64,.08); }
+
+    .cover-wrap {
+      width:100%; aspect-ratio:2/3; overflow:hidden;
+      background:#111; display:flex; align-items:center; justify-content:center;
+    }
+    .cover-wrap img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition:transform .4s ease;
+    }
+    .book-card:hover .cover-wrap img { transform:scale(1.04); }
+
+    .book-info { padding:.7rem .75rem .8rem; }
+    .book-title { font-size:.8rem; font-weight:700; color:#e8e8e8; line-height:1.35; margin-bottom:.28rem; }
+    .book-author { font-size:.72rem; color:var(--muted); }
+
+    .reading-badge {
+      display:inline-block; margin-top:.45rem;
+      font-size:.66rem; padding:.2rem .5rem; border-radius:6px;
+      background:rgba(255,160,64,.1); border:1px solid rgba(255,160,64,.25);
+      color:#ffa040; letter-spacing:.5px;
+    }
+
+    .book-card.hidden { display:none; }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+    footer { text-align:center; padding:2rem 0; background:#111; color:#aaa; font-size:.85rem; margin-top:2rem; }
+
+    @media (max-width:600px) {
+      .book-grid { grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:.8rem; }
+      .filter-btn { font-size:.78rem; padding:.45rem .85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><a href="index.html">Peter Salameh</a></div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="edu.html">Education</a>
+      <a href="projects.html">Projects</a>
+      <a href="delegate.html">Director / Delegate</a>
+      <a href="resume.html">Resume</a>
+      <a href="library.html">Library</a>
+    </nav>
+  </div>
+</header>
+
+<main class="narrow">
+  <section id="library">
+    <h2>My Library</h2>
+    <p class="road-to-100">On the road to 100 books</p>
+    <p class="section-blurb">I try to read broadly and expand my understanding across domains I don't pursue academically — because curiosity shouldn't have a syllabus.</p>
+
+    <div class="filters">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="reading">Reading Now</button>
+      <button class="filter-btn" data-cat="philosophy">Philosophy</button>
+      <button class="filter-btn" data-cat="finance">Finance & Economics</button>
+      <button class="filter-btn" data-cat="psychology">Psychology</button>
+      <button class="filter-btn" data-cat="poetry">Poetry</button>
+      <button class="filter-btn" data-cat="astro">Astrophysics</button>
+    </div>
+
+    <div class="book-grid">
+
+      <!-- ══ Reading Now ══ -->
+      <div class="section-label" data-section="reading">Reading Now</div>
+
+      <div class="book-card" data-cat="reading">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780143110910-L.jpg" alt="Behave" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info">
+          <div class="book-title">Behave</div>
+          <div class="book-author">Robert Sapolsky</div>
+          <span class="reading-badge">Reading</span>
+        </div>
+      </div>
+
+
+      <!-- ══ Philosophy ══ -->
+      <div class="section-label" data-section="philosophy">Philosophy</div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780140449334-L.jpg" alt="Meditations" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Meditations</div><div class="book-author">Marcus Aurelius</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780807014295-L.jpg" alt="Man's Search for Meaning" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Man's Search for Meaning</div><div class="book-author">Viktor E. Frankl</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780140441185-L.jpg" alt="Thus Spoke Zarathustra" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Thus Spoke Zarathustra</div><div class="book-author">Friedrich Nietzsche</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780486290300-L.jpg" alt="Metamorphosis" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Metamorphosis</div><div class="book-author">Franz Kafka</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780553208849-L.jpg" alt="Siddhartha" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Siddhartha</div><div class="book-author">Hermann Hesse</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780812988406-L.jpg" alt="When Breath Becomes Air" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">When Breath Becomes Air</div><div class="book-author">Paul Kalanithi</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780735211735-L.jpg" alt="The Daily Stoic" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Daily Stoic</div><div class="book-author">Ryan Holiday</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780140442106-L.jpg" alt="Letters from a Stoic" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Letters from a Stoic</div><div class="book-author">Seneca</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781544512280-L.jpg" alt="Can't Hurt Me" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Can't Hurt Me</div><div class="book-author">David Goggins</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780062457714-L.jpg" alt="The Subtle Art of Not Giving a F*ck" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Subtle Art of Not Giving a F*ck</div><div class="book-author">Mark Manson</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780140280197-L.jpg" alt="The 48 Laws of Power" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The 48 Laws of Power</div><div class="book-author">Robert Greene</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg" alt="The Alchemist" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Alchemist</div><div class="book-author">Paulo Coelho</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="./images/cover_pilgrimage.png" alt="The Pilgrimage" loading="lazy"></div>
+        <div class="book-info"><div class="book-title">The Pilgrimage</div><div class="book-author">Paulo Coelho</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781544514215-L.jpg" alt="The Almanack of Naval Ravikant" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Almanack of Naval Ravikant</div><div class="book-author">Eric Jorgenson</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780143130727-L.jpg" alt="Ikigai" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Ikigai</div><div class="book-author">Héctor García & Francesc Miralles</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781591846444-L.jpg" alt="Start With Why" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Start With Why</div><div class="book-author">Simon Sinek</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780156012195-L.jpg" alt="The Little Prince" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Little Prince</div><div class="book-author">Antoine de Saint-Exupéry</div></div>
+      </div>
+
+      <div class="book-card" data-cat="philosophy">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780486272740-L.jpg" alt="The Prince" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Prince</div><div class="book-author">Niccolò Machiavelli</div></div>
+      </div>
+
+      <!-- ══ Finance & Economics ══ -->
+      <div class="section-label" data-section="finance">Finance & Economics</div>
+
+      <div class="book-card" data-cat="finance">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg" alt="The Psychology of Money" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Psychology of Money</div><div class="book-author">Morgan Housel</div></div>
+      </div>
+
+      <div class="book-card" data-cat="finance">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg" alt="Rich Dad Poor Dad" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Rich Dad Poor Dad</div><div class="book-author">Robert T. Kiyosaki</div></div>
+      </div>
+
+      <div class="book-card" data-cat="finance">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780060731335-L.jpg" alt="Freakonomics" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Freakonomics</div><div class="book-author">Levitt & Dubner</div></div>
+      </div>
+
+      <div class="book-card" data-cat="finance">
+        <div class="cover-wrap"><img src="./images/cover_cracking_economics.png" alt="Cracking Economics" loading="lazy"></div>
+        <div class="book-info"><div class="book-title">Cracking Economics</div><div class="book-author">Tejvan Pettinger</div></div>
+      </div>
+
+      <div class="book-card" data-cat="finance">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781585424337-L.jpg" alt="Think and Grow Rich" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Think and Grow Rich</div><div class="book-author">Napoleon Hill</div></div>
+      </div>
+
+      <!-- ══ Psychology ══ -->
+      <div class="section-label" data-section="psychology">Psychology & Neuroscience</div>
+
+      <div class="book-card" data-cat="psychology">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781250107817-L.jpg" alt="Factfulness" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Factfulness</div><div class="book-author">Hans Rosling</div></div>
+      </div>
+
+      <div class="book-card" data-cat="psychology">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780671027032-L.jpg" alt="How to Win Friends and Influence People" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">How to Win Friends and Influence People</div><div class="book-author">Dale Carnegie</div></div>
+      </div>
+
+      <div class="book-card" data-cat="psychology">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781524746728-L.jpg" alt="Dopamine Nation" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Dopamine Nation</div><div class="book-author">Anna Lembke</div></div>
+      </div>
+
+      <!-- ══ Poetry ══ -->
+      <div class="section-label" data-section="poetry">Poetry</div>
+
+      <div class="book-card" data-cat="poetry">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780679412267-L.jpg" alt="The Prophet" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Prophet</div><div class="book-author">Kahlil Gibran</div></div>
+      </div>
+
+      <div class="book-card" data-cat="poetry">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780394719320-L.jpg" alt="The Garden of the Prophet" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Garden of the Prophet</div><div class="book-author">Kahlil Gibran</div></div>
+      </div>
+
+      <div class="book-card" data-cat="poetry">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780061142666-L.jpg" alt="Tao Te Ching" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">Tao Te Ching</div><div class="book-author">Lao Tzu</div></div>
+      </div>
+
+      <div class="book-card" data-cat="poetry">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780140443486-L.jpg" alt="The Analects" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Analects</div><div class="book-author">Confucius</div></div>
+      </div>
+
+      <div class="book-card" data-cat="poetry">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781590302255-L.jpg" alt="The Art of War" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">The Art of War</div><div class="book-author">Sun Tzu</div></div>
+      </div>
+
+      <!-- ══ Astrophysics ══ -->
+      <div class="section-label" data-section="astro">Astrophysics</div>
+
+      <div class="book-card" data-cat="astro">
+        <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780553380163-L.jpg" alt="A Brief History of Time" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="book-info"><div class="book-title">A Brief History of Time</div><div class="book-author">Stephen Hawking</div></div>
+      </div>
+
+      <div class="book-card" data-cat="astro">
+        <div class="cover-wrap"><img src="./images/cover_black_holes.png" alt="Black Holes" loading="lazy"></div>
+        <div class="book-info"><div class="book-title">Black Holes</div><div class="book-author">Brian Cox & Jeff Forshaw</div></div>
+      </div>
+
+      <div class="book-card" data-cat="astro">
+        <div class="cover-wrap"><img src="./images/cover_space_time_matter.png" alt="Space, Time and Matter" loading="lazy"></div>
+        <div class="book-info"><div class="book-title">Space, Time and Matter</div><div class="book-author">Hermann Weyl</div></div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer><p>&copy; 2025 Peter Salameh. All rights reserved.</p></footer>
+
+<script>
+  const btns   = document.querySelectorAll('.filter-btn');
+  const cards  = document.querySelectorAll('.book-card');
+  const labels = document.querySelectorAll('.section-label');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+
+      cards.forEach(card => {
+        card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
+      });
+
+      labels.forEach(label => {
+        if (cat === 'all') {
+          const has = [...cards].some(c => c.dataset.cat === label.dataset.section);
+          label.classList.toggle('hidden', !has);
+        } else {
+          label.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

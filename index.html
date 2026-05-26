@@ -12,13 +12,8 @@
   <!-- Swirl background -->
   <div class="content content--canvas"></div>
 
-  <!-- Welcome Screen -->
-  <section id="welcome">
-    <h1 class="animated-text">Welcome to my World ~ P.S </h1>
-  </section>
-
   <!-- Main Site Content -->
-  <div id="main-content" class="hidden">
+  <div id="main-content">
     <header>
       <div class="container">
         <h1>Peter Salameh</h1>
@@ -30,7 +25,7 @@
             <li><a href="projects.html">Projects</a></li>
             <li><a href="delegate.html">Director / Delgate Experience</a></li>
             <li><a href="resume.html">Resume</a></li>
-            <li><a href="blog.html">Blog</a></li>
+            <li><a href="library.html">Library</a></li>
           </ul>
         </nav>
       </div>
@@ -38,14 +33,16 @@
 
     <section class="intro-section fade-in" id="intro">
       <div class="intro-container">
+        <img src="./images/newInt.jpeg" alt="Peter Salameh" class="intro-img" />
         <div class="intro-text">
-          <h2>Welcome!</h2>
-          <p>
-            I'm Peter Salameh — passionate about data, strategy, and creating smart digital experiences.
-            Welcome to my portfolio where I showcase my journey, projects, and what lies ahead!
-          </p>
+          <p class="intro-greeting">Hello, I'm</p>
+          <h2>Peter Salameh</h2>
+          <p class="intro-bio">Passionate about data, strategy, and creating smart digital experiences. Welcome to my portfolio — explore my journey, projects, and what lies ahead.</p>
         </div>
-        <img src="./images/IntroPic.jpeg" alt="Peter Salameh" class="intro-img" />
+      </div>
+      <div class="scroll-hint">
+        <span>scroll</span>
+        <div class="scroll-arrow"></div>
       </div>
     </section>
 
@@ -54,15 +51,23 @@
 
         <a class="on-click-cards" href="edu.html">
           <section class="fade-in delay-1" id="education">
-            <h2>Education</h2>
-            <p>Details about your academic background.</p>
+            <div class="card-img" style="background-image: url('./images/Grad Photo-22.jpg'); background-size: cover; background-position: center 5%;"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h2>Education</h2>
+              <p>My academic journey and background.</p>
+            </div>
           </section>
         </a>
 
         <a class="on-click-cards" href="projects.html">
           <section class="fade-in delay-1" id="projects">
-            <h2>Projects</h2>
-            <p>Explore some of the key projects I've worked on.</p>
+            <div class="card-img" style="background-image: url('./images/IntroPic.jpeg'); background-size: 80%; background-position: center 5%; background-repeat: no-repeat;"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h2>Projects</h2>
+              <p>Explore the key projects I've worked on.</p>
+            </div>
           </section>
         </a>
 
@@ -75,22 +80,34 @@
 
         <a class="on-click-cards" href="delegate.html">
           <section class="fade-in delay-2" id="MUN Experience">
-            <h2>Model United Nations Experience</h2>
-            <p>Details about MUN, conferences, etc.</p>
+            <div class="card-img" style="background-image: url('./images/mcmun1.jpeg')"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h2>Model United Nations</h2>
+              <p>Conferences, delegations, and diplomacy.</p>
+            </div>
           </section>
         </a>
 
-        <a class="on-click-cards" href="blog.html">
+        <a class="on-click-cards" href="library.html">
           <section class="fade-in delay-1" id="blog">
-            <h2>Blog</h2>
-            <p>Thoughts, reflections, or articles go here.</p>
+            <div class="card-img" style="background-image: url('./images/library.jpg')"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h2>My Library</h2>
+              <p>Books I've read — philosophy, finance, poetry & more.</p>
+            </div>
           </section>
         </a>
 
         <a class="on-click-cards" href="resume.html">
           <section class="fade-in delay-1" id="resume">
-            <h2>Resume</h2>
-            <p><span style="color: #fff; text-decoration: underline;">View my resume (PDF)</span></p>
+            <div class="card-img" style="background-image: url('./images/resume.png')"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h2>Resume</h2>
+              <p>View my full resume (PDF).</p>
+            </div>
           </section>
         </a>
 
@@ -103,9 +120,7 @@
   </div>
 
   <!-- Scripts: must be inside body at the bottom -->
-  <script src="./js/noise.min.js"></script>
-  <script src="./js/util.js"></script>
-  <script src="./js/swirl.js"></script>
+  <script src="./js/network.js"></script>
   <script src="./script.js"></script>
   <script>
     // Mobile nav toggle (progressive enhancement)
