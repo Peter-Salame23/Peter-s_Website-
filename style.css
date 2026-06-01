@@ -121,7 +121,7 @@ nav a:focus-visible { color: #00ffe1; outline: none; }
   gap: 3.5rem;
   align-items: center;
   justify-content: center;
-  max-width: 920px;
+  max-width: 1060px;
   width: 100%;
 }
 
@@ -179,7 +179,7 @@ nav a:focus-visible { color: #00ffe1; outline: none; }
   font-size: 0.95rem;
   color: #bbb;
   line-height: 1.7;
-  max-width: 38ch;
+  max-width: 52ch;
 }
 
 .intro-verse {
