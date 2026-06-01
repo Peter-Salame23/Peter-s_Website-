@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finding Focus in a Noisy World | Peter Salameh</title>
   <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     .post-container {
       max-width: 800px;
@@ -28,10 +29,15 @@
   <header>
     <div class="container">
       <h1>Peter Salameh</h1>
-      <nav>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../blog.html">Back to Blog</a></li>
+      <nav aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">☰</button>
+        <ul id="primary-menu">
+          <li><a href="../index.html#intro">Intro</a></li>
+          <li><a href="../edu.html">Education</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../delegate.html">Director / Delgate Experience</a></li>
+          <li><a href="../library.html">Library</a></li>
+          <li><a href="../resume.html">Resume</a></li>
         </ul>
       </nav>
     </div>
@@ -105,5 +111,16 @@
         </p>
         
     </main>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('primary-menu');
+    if (navToggle && menu) {
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        menu.classList.toggle('open');
+      });
+    }
+  </script>
   </body>
 </html>
