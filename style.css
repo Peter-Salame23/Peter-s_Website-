@@ -176,10 +176,10 @@ nav a:focus-visible { color: #00ffe1; outline: none; }
 }
 
 .intro-bio {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #bbb;
   line-height: 1.7;
-  max-width: 52ch;
+  max-width: 70ch;
 }
 
 .intro-verse {
