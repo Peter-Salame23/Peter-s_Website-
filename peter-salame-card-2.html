@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peter Salame — Business Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080d;
+    --card: #0f1016;
+    --card-2: #0c0d13;
+    --ink: #f4f4f8;
+    --muted: #8b8c98;
+    --accent: #8b7bf0;
+    --accent-2: #5b8def;
+    --glow: rgba(139,123,240,.55);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(1200px 700px at 80% -5%, #16131f 0%, transparent 55%),
+      radial-gradient(900px 600px at 0% 100%, #0e1320 0%, transparent 50%),
+      var(--bg);
+    min-height: 100vh;
+    display: flex; flex-wrap: wrap; gap: 32px;
+    align-items: center; justify-content: center;
+    padding: 48px 24px;
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    position: relative;
+    width: 360px; height: 620px;
+    border-radius: 26px;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--card) 0%, var(--card-2) 100%);
+    border: 1px solid rgba(255,255,255,.07);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.05) inset,
+      0 40px 80px -30px rgba(0,0,0,.9),
+      0 0 0 1px rgba(0,0,0,.4);
+    isolation: isolate;
+    opacity: 0; transform: translateY(18px);
+    animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .card.two { animation-delay: .15s; }
+  @keyframes rise { to { opacity:1; transform:none; } }
+
+  canvas.net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+
+  .inner { position: relative; z-index: 1; height: 100%; padding: 40px 34px; display: flex; flex-direction: column; }
+
+  .mono {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 600; line-height: .8;
+    color: #eef0ff; letter-spacing: 1px;
+    display: inline-flex; align-items: flex-start; width: max-content;
+  }
+  .mono .slash { color: var(--accent); font-weight: 500; margin: 0 -2px; transform: translateY(2px); text-shadow: 0 0 16px var(--glow); }
+  .mono .b { transform: translateY(14px); }
+
+  .name {
+    margin-top: 64px;
+    font-weight: 400; font-size: 38px; line-height: 1.06;
+    letter-spacing: 7px; text-transform: uppercase;
+    background: linear-gradient(100deg, #ffffff 0%, #cfc7ff 55%, #9d8cf2 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .rule { width: 46px; height: 2px; margin: 22px 0; background: linear-gradient(90deg, var(--accent), transparent); box-shadow: 0 0 12px var(--glow); }
+  .title { font-weight: 300; font-size: 14.5px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); line-height: 1.7; }
+
+  .contact { margin-top: auto; display: flex; flex-direction: column; gap: 17px; }
+  .row { display: flex; align-items: center; gap: 15px; }
+  .ic { flex: 0 0 22px; width: 22px; height: 22px; color: var(--accent); display: grid; place-items: center; filter: drop-shadow(0 0 6px rgba(139,123,240,.35)); }
+  .ic svg { width: 19px; height: 19px; }
+  .row span { font-weight: 300; font-size: 14px; letter-spacing: .4px; color: #d7d8e2; }
+
+  /* card two */
+  .two .inner { justify-content: center; gap: 8px; padding-top: 46px; padding-bottom: 46px; }
+  .qr-block { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .qr-label { font-weight: 400; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); }
+  .qr {
+    width: 150px; height: 150px; padding: 10px;
+    background: #fff; border-radius: 12px;
+    box-shadow: 0 14px 40px -16px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .two .url { font-weight: 300; font-size: 12px; letter-spacing: .4px; color: var(--accent); }
+  .divider { width: 70%; height: 1px; margin: 26px 0; background: linear-gradient(90deg, transparent, rgba(139,123,240,.5), transparent); }
+
+  @media print {
+    body { background:#08080d; padding:0; gap:0; }
+    .card { box-shadow:none; animation:none; opacity:1; transform:none; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+  <article class="card one">
+    <canvas class="net"></canvas>
+    <div class="inner">
+      <div class="mono"><span>P</span><span class="slash">/</span><span class="b">S</span></div>
+      <h1 class="name">Peter<br>Salame</h1>
+      <div class="rule"></div>
+      <p class="title">AI Developer<br>/ Contractor</p>
+      <div class="contact">
+        <div class="row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span>petermsalame@outlook.com</span>
+        </div>
+        <div class="row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+          <span>514 386 9923</span>
+        </div>
+        <div class="row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+          <span>Peter-salame.com</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="card two">
+    <canvas class="net"></canvas>
+    <div class="inner">
+      <div class="qr-block">
+        <div class="qr-label">Portfolio</div>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYwAAAGMAQAAAADhQqjnAAACWElEQVR4nO2cTZIbIQyF30t5DzeY+x/LN4ATKAuJn2Y2aSeZKJ6nhQtjvupWlUrAE5iGm9Z/3CUAIUKECPl7CMy2TFbM2vqMnnNAWl+EJEaKuQHgh9mTHmDRUy8DsvsiJCtCkjW6+GHo9E4A1o4B2X0Rkgx5nB2d6COP9YpOlPYvXkzI2yCfYqw0Ap7HUIxngL32FCHfGYkYOxQMA+jBBniYbQPS+iIkMdLpFn3F5tos7DIgty9C0iEPXJOYdfrXS+fvPkXId0YQooRrYsBqjB3lpWHSx4Tctj3ArGGqr4cYu0VgWl+E5ETGvrIYemVIFrReWYydNmZPFhu7gLS+CMmJ+PS3Za3dillbiS60fuUxIfdsz2P0bGa9zp8JcA2o9nUvJuTdkChKPqNgNOvgqzjeOTSN7L4ISYY8APgyzPOVeaNXlMarjjHks7S+CMmLePryFZcntHXuopg9I7h07kLI6+uxsRgbmQocu0v/lYAVQ6zT0voiJCey1vxzZsSYMXmMjSBM64uQvAjJuaRnjerkUCoAwBq2CmZqX4TkQ7Za0jzpWiK6ZoztI6WPCblrHlczwFbxaATeGtlUrxTyeh6bhhVLq3y5h59iTMgLCKfVTXEdwmw0/Jz/176YkLdAXLto/sVPWa9N5TgKG0psbDzT+iIkNTKvHcVG0ifHJ63FNtOFWdWShNxHPt8ZMU9iNtooLdRX1cSF/AnElbGllZV1pTd6/h9fhORAzntJfiMJ++lE719VgLS+CEmMHPeSps065litKY8JuY+sGuWvmv4bSogQIbmQn4wfe/NTm+Y7AAAAAElFTkSuQmCC" alt="QR to Peter-salame.com"></div>
+        <div class="url">Peter-salame.com</div>
+      </div>
+      <div class="divider"></div>
+      <div class="qr-block">
+        <div class="qr-label">LinkedIn</div>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAewAAAHsAQAAAAA4UaPNAAADVklEQVR4nO2dW27rMAxEhxf5l3eQ/S+rO5BWMPeDelAuUKBt0ob1CEXryDqIBdDEiKRUI77R2r/v0IBw4cKFC382DjJ4+kL/SBJl/ACsYO0DtsE19dyFXxgv9AbADrACzQCgGd/MB/RhdRv8Eg8vXPjn2s3/GIBSARAw/ziaG7cVohn3wb/98MKFPwJvRtKVDCvsPpz/m9kBO5787cKFPx2/nTsKzX83I8BmbAdH/7sgT+q5C780Pn27mc11q937GtblPUn383Pwizy8cOGfxpt5A1ZkZqoau9PuXMImDn6Fhxcu/HPthneKhc3Y7DzQpc55cOq5C78mvvS8Wzl7WIZ4b/ztQKld1bvIzz134dfEt5yU555YV+cKxRf2jNWIz5PKSQnPiI8F6Ui5euJpLFGXvJ/Ry83sZfPC8+Hd5leCtW790av3fh/gbl82LzwfHvx2BbAVGMz+ed2RKpsXnhcPer4wFpIN9YJZddblzSg/k7YRnhM/2zaC2onVlacxY1jquQu/Jj7ceO3XXcbU3fIxxQzmtbSN8Jx4yEmVal5a2QyFVqoVxjIbjrpKNuvFxrnnLvya+C5gononZ6Ayevjp9qVthOfEl5939452ADCgl1POinp3+F5sNm799sMLF/6V9nGUMl5g9//y88Jz4mGtWgGs5BSAqHZOb8G4m3ruwq+JD5tnMOk6boWLGcPZQ5qp5y78mvgNGHujABRiFlL2GM4RKy3tXE6ceu7Cr4mfSyhDXQFO8v4U25G2EZ4TjwY8uqZ0ny9CLDyAclLCU+MrII8Zq8dWQhwDNZ0p80VIPXfh18VJmhlJP9MjhCKBcdCHXwDhxKcHfbtw4T+L972BBKzUuROwlxkU2ljecixgrRDtGMc6pZ678GviW/jdL/qNsGKNkj6C0jbCE+LBpGOOte5368rActRhyuaF58TP5xKvNew0b26ef22blc0LT4lve7rjUdtxY/jKz4ZAvWKVwnPie3zy5N7Lpmq2w+ehnJTwP4Kzwg6grLhlD1GGg+hDWc5rPbxw4V/BvUK+xiB8fwswBQ+gfVLC0+IrPt/brCUbm0e8efSe7UAzzpq03HMXfmE8HjW8n87agzahc4Zx7HjQtwsX/qO46X9lChcuXPifxv8DVltcM/inC80AAAAASUVORK5CYII=" alt="QR to LinkedIn"></div>
+        <div class="url">linkedin.com/in/peter-salame</div>
+      </div>
+    </div>
+  </article>
+
+<script>
+(function(){
+  const ACCENTS = ['#9a86ff','#5b8def','#b9c3e6'];
+  function initCanvas(canvas){
+    const ctx = canvas.getContext('2d');
+    let W, H, dpr, nodes = [], shooters = [];
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio||1, 2);
+      const r = canvas.getBoundingClientRect();
+      W = r.width; H = r.height;
+      canvas.width = W*dpr; canvas.height = H*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function build(){
+      const count = Math.round(W*H/9000); // density
+      nodes = [];
+      for(let i=0;i<count;i++){
+        nodes.push({
+          x: Math.random()*W, y: Math.random()*H,
+          vx: (Math.random()-.5)*0.22, vy: (Math.random()-.5)*0.22,
+          r: Math.random()*1.4+0.5,
+          c: Math.random()<0.22 ? ACCENTS[Math.floor(Math.random()*ACCENTS.length)] : '#aab0c8',
+          tw: Math.random()*Math.PI*2, tws: 0.01+Math.random()*0.02
+        });
+      }
+    }
+    function spawnShooter(){
+      const edge = Math.random();
+      shooters.push({
+        x: Math.random()*W, y: -10,
+        vx: 1.4+Math.random()*1.2, vy: 1.0+Math.random()*1.0,
+        life: 0, max: 60+Math.random()*40
+      });
+    }
+    let last = 0;
+    function frame(t){
+      ctx.clearRect(0,0,W,H);
+      // links
+      for(let i=0;i<nodes.length;i++){
+        const a = nodes[i];
+        for(let j=i+1;j<nodes.length;j++){
+          const b = nodes[j];
+          const dx=a.x-b.x, dy=a.y-b.y, d2=dx*dx+dy*dy;
+          if(d2<11000){
+            const o = (1 - d2/11000)*0.38;
+            ctx.strokeStyle = 'rgba(130,150,210,'+o.toFixed(3)+')';
+            ctx.lineWidth = 0.6;
+            ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+          }
+        }
+      }
+      // nodes
+      for(const n of nodes){
+        n.x+=n.vx; n.y+=n.vy; n.tw+=n.tws;
+        if(n.x<0||n.x>W) n.vx*=-1;
+        if(n.y<0||n.y>H) n.vy*=-1;
+        const tw = 0.55+0.45*Math.sin(n.tw);
+        ctx.globalAlpha = tw;
+        ctx.fillStyle = n.c;
+        if(n.c!=='#aab0c8'){ ctx.shadowColor=n.c; ctx.shadowBlur=8; } else { ctx.shadowBlur=0; }
+        ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,7); ctx.fill();
+        ctx.shadowBlur=0; ctx.globalAlpha=1;
+      }
+      // shooting stars
+      if(Math.random()<0.006) spawnShooter();
+      for(let i=shooters.length-1;i>=0;i--){
+        const s = shooters[i]; s.x+=s.vx; s.y+=s.vy; s.life++;
+        const a = Math.max(0, 1 - s.life/s.max);
+        const len = 26;
+        const g = ctx.createLinearGradient(s.x,s.y,s.x-s.vx*len,s.y-s.vy*len);
+        g.addColorStop(0,'rgba(200,210,255,'+(a*0.9)+')');
+        g.addColorStop(1,'rgba(200,210,255,0)');
+        ctx.strokeStyle=g; ctx.lineWidth=1.3;
+        ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-s.vx*len,s.y-s.vy*len); ctx.stroke();
+        if(s.life>s.max||s.x>W+20||s.y>H+20) shooters.splice(i,1);
+      }
+      requestAnimationFrame(frame);
+    }
+    resize(); build();
+    window.addEventListener('resize',()=>{resize();build();});
+    requestAnimationFrame(frame);
+  }
+  document.querySelectorAll('canvas.net').forEach(initCanvas);
+})();
+</script>
+</body>
+</html>

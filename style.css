@@ -413,6 +413,25 @@ footer {
   .card-content h2 { font-size: 1.15rem; }
 }
 
+
+/* Contact card decorative icon */
+.contact-card-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contact-card-icon svg {
+  width: 55%;
+  height: 55%;
+  filter: drop-shadow(0 0 18px rgba(139,123,240,0.6)) drop-shadow(0 0 40px rgba(139,123,240,0.3));
+  opacity: 0.85;
+}
+
 #mcmun-box {
   background-size: 120%; /* smaller % zooms out more, e.g., 100% = original fit */
   background-position: center;
